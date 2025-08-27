@@ -113,7 +113,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Main Menu -->
         <div id="menu">
             <h1 class="title">Garage Academy</h1>
             <p class="subtitle">Una Historia de Amor Mecanica</p>
@@ -121,7 +120,6 @@
             <button class="button" onclick="showCharacters()">Ver Personajes</button>
         </div>
 
-        <!-- Characters Screen -->
         <div id="characters" class="hidden">
             <h2>Personajes</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
@@ -154,7 +152,6 @@
             <button class="button" onclick="showMenu()">Volver</button>
         </div>
 
-        <!-- Game Screen -->
         <div id="game" class="hidden">
             <div class="stats">
                 <span>Capitulo: <span id="chapter">1</span></span> | 
@@ -786,7 +783,8 @@
         }
 
         function showDialog() {
-            const current = dialogs[gameState.scene][gameState.dialog];
+            const currentScene = dialogs[gameState.scene];
+            const current = currentScene[gameState.dialog];
             
             document.getElementById('speaker').textContent = current.speaker;
             document.getElementById('text').textContent = current.text;
@@ -839,13 +837,11 @@
             const current = dialogs[gameState.scene][gameState.dialog];
             
             if (current.next) {
-                gameState.scene = current.next;
-                gameState.dialog = 0;
+                selectChoice({ next: current.next });
             } else {
                 gameState.dialog++;
+                showDialog();
             }
-            
-            showDialog();
         }
 
         function updateStats() {
