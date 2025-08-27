@@ -67,7 +67,7 @@
         
         .character-display {
             text-align: center;
-            padding: 40px;
+            padding: 20px;
             background: #f0f8ff;
             border-radius: 10px;
             margin: 20px 0;
@@ -78,6 +78,12 @@
             margin-bottom: 10px;
         }
         
+        .vehicle img {
+            max-width: 100%;
+            height: auto;
+            max-height: 250px;
+        }
+
         .hidden {
             display: none;
         }
@@ -123,28 +129,28 @@
         <div id="characters" class="hidden">
             <h2>Personajes</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-                <div style="background: #f9f9f9; padding: 15px; border-radius: 8px;">
-                    <div style="font-size: 3em; text-align: center;">🚁</div>
+                <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; text-align: center;">
+                    <img src="Helichan.jpg" alt="Heli-Chan" style="width: 100px; height: auto;">
                     <h3>Heli-Chan</h3>
                     <p>Helicoptero militar. Personalidad ruda pero se enamora de quien no le teme.</p>
                 </div>
-                <div style="background: #f9f9f9; padding: 15px; border-radius: 8px;">
-                    <div style="font-size: 3em; text-align: center;">🛥️</div>
+                <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; text-align: center;">
+                    <img src="Motorin.jpg" alt="Motorin" style="width: 100px; height: auto;">
                     <h3>Motorin</h3>
                     <p>Lancha tsundere. Dice "BAKA!" y se enamora cuando tocan su popa.</p>
                 </div>
-                <div style="background: #f9f9f9; padding: 15px; border-radius: 8px;">
-                    <div style="font-size: 3em; text-align: center;">❄️</div>
+                <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; text-align: center;">
+                    <img src="Gela y Froza.jpg" alt="Gela y Froza" style="width: 100px; height: auto;">
                     <h3>Gela & Froza</h3>
                     <p>Gemelas refrigeradoras kuudere. Se derriten por el calor humano.</p>
                 </div>
-                <div style="background: #f9f9f9; padding: 15px; border-radius: 8px;">
-                    <div style="font-size: 3em; text-align: center;">🚙</div>
+                <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; text-align: center;">
+                    <img src="Jeepychan.jpg" alt="Jeepy" style="width: 100px; height: auto;">
                     <h3>Jeepy</h3>
                     <p>Jeep osananajimi. Amiga de la infancia energetica.</p>
                 </div>
-                <div style="background: #ffebee; padding: 15px; border-radius: 8px; border: 2px solid #f44336;">
-                    <div style="font-size: 3em; text-align: center;">🏍️</div>
+                <div style="background: #ffebee; padding: 15px; border-radius: 8px; border: 2px solid #f44336; text-align: center;">
+                    <img src="Greta.jpg" alt="Greta Eisenrad" style="width: 100px; height: auto;">
                     <h3>Greta Eisenrad</h3>
                     <p>⚠️ HEROINA SECRETA - Motocicleta ruda que entra a mitad del ciclo. PELIGRO: Yandere obsesiva.</p>
                 </div>
@@ -159,7 +165,7 @@
             </div>
             
             <div class="character-display" id="characterArea">
-                <div class="vehicle">🏫</div>
+                <img src="https://i.ibb.co/C07P6m8/Garage-Academy-icon.png" alt="Garage Academy" style="max-height: 250px;">
                 <div>Garage Academy</div>
             </div>
 
@@ -186,17 +192,17 @@
                 {
                     speaker: "Narrador",
                     text: "Bienvenido a Garage Academy, la academia mas prestigiosa para vehiculos sensibles!",
-                    character: "🏫"
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png"
                 },
                 {
                     speaker: "Narrador",
                     text: "Eres el nuevo estudiante humano en esta escuela llena de vehiculos antropomorficos.",
-                    character: "🏫"
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png"
                 },
                 {
                     speaker: "Narrador",
                     text: "Tu primer dia comienza ahora. Estas listo para esta experiencia?",
-                    character: "🏫",
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png",
                     choices: [
                         { text: "¡Si, estoy emocionado!", next: "courtyard" },
                         { text: "Esto es raro pero sigamos", next: "courtyard" },
@@ -208,22 +214,22 @@
                 {
                     speaker: "Narrador",
                     text: "Entras al patio. Varios vehiculos socializan en grupos.",
-                    character: "🏫"
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png"
                 },
                 {
                     speaker: "Narrador",
                     text: "De repente escuchas rotores acercandose. WOOP WOOP WOOP!",
-                    character: "🏫"
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png"
                 },
                 {
                     speaker: "Heli-Chan",
                     text: "¡ALTO AHI SOLDADO! Identificate inmediatamente. Este sector esta bajo mi supervision.",
-                    character: "🚁"
+                    character: "Helichan.jpg"
                 },
                 {
                     speaker: "Heli-Chan",
                     text: "Y bien? No vas a huir como todos los demas cobardes?",
-                    character: "🚁",
+                    character: "Helichan.jpg",
                     choices: [
                         { text: "No le tengo miedo a nadie", next: "heli_impressed", affection: { heli: 2 } },
                         { text: "Soy el nuevo estudiante", next: "heli_neutral" },
@@ -235,17 +241,17 @@
                 {
                     speaker: "Heli-Chan",
                     text: "Interesante! No muchos mantienen su posicion frente a un Apache. Respeto eso, soldado.",
-                    character: "🚁"
+                    character: "Helichan.jpg"
                 },
                 {
                     speaker: "Heli-Chan",
                     text: "Tal vez no seas como los otros. Me llamo Heli-Chan, capitan de patrulla aerea.",
-                    character: "🚁"
+                    character: "Helichan.jpg"
                 },
                 {
                     speaker: "Narrador",
                     text: "Has impresionado a Heli-Chan! Su respeto militar se desarrolla en algo mas...",
-                    character: "🚁",
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png",
                     next: "motorin_intro"
                 }
             ],
@@ -253,12 +259,12 @@
                 {
                     speaker: "Heli-Chan",
                     text: "Ah, el nuevo estudiante humano. He oido rumores.",
-                    character: "🚁"
+                    character: "Helichan.jpg"
                 },
                 {
                     speaker: "Heli-Chan",
                     text: "Manten disciplina en mi territorio y no tendremos problemas, civil.",
-                    character: "🚁",
+                    character: "Helichan.jpg",
                     next: "motorin_intro"
                 }
             ],
@@ -266,12 +272,12 @@
                 {
                     speaker: "Heli-Chan",
                     text: "Otro cobarde mas. Que aburrido.",
-                    character: "🚁"
+                    character: "Helichan.jpg"
                 },
                 {
                     speaker: "Heli-Chan",
                     text: "Espero que crezcas durante tu estancia aqui, civil.",
-                    character: "🚁",
+                    character: "Helichan.jpg",
                     next: "motorin_intro"
                 }
             ],
@@ -279,22 +285,22 @@
                 {
                     speaker: "Narrador",
                     text: "Una lancha roja se acerca a velocidad desde el lago. Viene directo hacia ti!",
-                    character: "🛥️"
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png"
                 },
                 {
                     speaker: "Motorin",
                     text: "VROOOOM! Oye nuevo! Sal de mi camino o te atropello! VROOOOM!",
-                    character: "🛥️"
+                    character: "Motorin.jpg"
                 },
                 {
                     speaker: "Motorin",
                     text: "B-BAKA! Casi te aplasto! Por que no te moviste?",
-                    character: "🛥️"
+                    character: "Motorin.jpg"
                 },
                 {
                     speaker: "Narrador",
                     text: "En el susto, pones tu mano en la parte trasera de la lancha para equilibrarte.",
-                    character: "🛥️",
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png",
                     choices: [
                         { text: "Lo siento! Estas bien?", next: "motorin_touched", affection: { motorin: 2 } },
                         { text: "Quitar la mano rapido", next: "motorin_touched", affection: { motorin: 1 } },
@@ -306,17 +312,17 @@
                 {
                     speaker: "Motorin",
                     text: "KYAAAA! Mi popa! PERVERTIDO! VROOOOM VROOOOM!",
-                    character: "🛥️"
+                    character: "Motorin.jpg"
                 },
                 {
                     speaker: "Motorin",
                     text: "N-no puedes tocar a una dama asi! BAKA!",
-                    character: "🛥️"
+                    character: "Motorin.jpg"
                 },
                 {
                     speaker: "Motorin",
                     text: "P-pero... gracias por preocuparte! No es que me importe! BAKA!",
-                    character: "🛥️",
+                    character: "Motorin.jpg",
                     next: "twins_intro"
                 }
             ],
@@ -324,35 +330,35 @@
                 {
                     speaker: "Motorin",
                     text: "Como te atreves! YO casi TE atropello!",
-                    character: "🛥️"
+                    character: "Motorin.jpg"
                 },
                 {
                     speaker: "Motorin",
                     text: "BAKA! Los humanos no tienen respeto!",
-                    character: "🛥️",
+                    character: "Motorin.jpg",
                     next: "twins_intro"
                 }
             ],
             twins_intro: [
                 {
-                    speaker: "Gela",
+                    speaker: "Gela y Froza",
                     text: "Hermana... hay un humano aqui...",
-                    character: "❄️"
+                    character: "Gela y Froza.jpg"
                 },
                 {
-                    speaker: "Froza",
+                    speaker: "Gela y Froza",
                     text: "Si hermana... se ve calido...",
-                    character: "❄️"
+                    character: "Gela y Froza.jpg"
                 },
                 {
-                    speaker: "Gela",
+                    speaker: "Gela y Froza",
                     text: "Somos Gela y Froza... gemelas refrigeradoras...",
-                    character: "❄️"
+                    character: "Gela y Froza.jpg"
                 },
                 {
-                    speaker: "Froza",
+                    speaker: "Gela y Froza",
                     text: "Mantenemos las cosas frias... pero tu irradias calor...",
-                    character: "❄️",
+                    character: "Gela y Froza.jpg",
                     choices: [
                         { text: "Ofrecerles un abrazo", next: "twins_warmed", affection: { twins: 3 } },
                         { text: "Preguntar si estan bien", next: "twins_concerned", affection: { twins: 1 } },
@@ -362,40 +368,40 @@
             ],
             twins_warmed: [
                 {
-                    speaker: "Gela",
+                    speaker: "Gela y Froza",
                     text: "Ah! Tan calido...",
-                    character: "❄️"
+                    character: "Gela y Froza.jpg"
                 },
                 {
-                    speaker: "Froza",
+                    speaker: "Gela y Froza",
                     text: "Este sentimiento... no es refrigeracion... es amor...",
-                    character: "❄️",
+                    character: "Gela y Froza.jpg",
                     next: "jeepy_intro"
                 }
             ],
             twins_concerned: [
                 {
-                    speaker: "Gela",
+                    speaker: "Gela y Froza",
                     text: "El se preocupa por nosotras...",
-                    character: "❄️"
+                    character: "Gela y Froza.jpg"
                 },
                 {
-                    speaker: "Froza",
+                    speaker: "Gela y Froza",
                     text: "Es considerado como el calor del hogar...",
-                    character: "❄️",
+                    character: "Gela y Froza.jpg",
                     next: "jeepy_intro"
                 }
             ],
             twins_neutral: [
                 {
-                    speaker: "Gela",
+                    speaker: "Gela y Froza",
                     text: "Hola humano...",
-                    character: "❄️"
+                    character: "Gela y Froza.jpg"
                 },
                 {
-                    speaker: "Froza",
+                    speaker: "Gela y Froza",
                     text: "Si necesitas algo frio estamos aqui...",
-                    character: "❄️",
+                    character: "Gela y Froza.jpg",
                     next: "jeepy_intro"
                 }
             ],
@@ -403,17 +409,17 @@
                 {
                     speaker: "???",
                     text: "EEEEHHH! ES REALMENTE EL?!",
-                    character: "🚙"
+                    character: "Jeepychan.jpg"
                 },
                 {
                     speaker: "Jeepy",
                     text: "ERES TU! Mi mejor amigo de la infancia!",
-                    character: "🚙"
+                    character: "Jeepychan.jpg"
                 },
                 {
                     speaker: "Jeepy",
                     text: "Soy Jeepy! Me recuerdas? Soliamos jugar juntos!",
-                    character: "🚙",
+                    character: "Jeepychan.jpg",
                     choices: [
                         { text: "Por supuesto que te recuerdo!", next: "jeepy_happy", affection: { jeepy: 3 } },
                         { text: "Me suenas familiar", next: "jeepy_hopeful", affection: { jeepy: 1 } },
@@ -425,12 +431,12 @@
                 {
                     speaker: "Jeepy",
                     text: "KYAAAA! Sabia que no me habias olvidado!",
-                    character: "🚙"
+                    character: "Jeepychan.jpg"
                 },
                 {
                     speaker: "Jeepy",
                     text: "He esperado tanto para verte! Cada dia sonaba con este momento!",
-                    character: "🚙",
+                    character: "Jeepychan.jpg",
                     next: "end"
                 }
             ],
@@ -438,7 +444,7 @@
                 {
                     speaker: "Jeepy",
                     text: "Sabia que me recordarias aunque sea un poco!",
-                    character: "🚙",
+                    character: "Jeepychan.jpg",
                     next: "end"
                 }
             ],
@@ -446,7 +452,7 @@
                 {
                     speaker: "Jeepy",
                     text: "Oh... supongo que han pasado muchos anos...",
-                    character: "🚙",
+                    character: "Jeepychan.jpg",
                     next: "end"
                 }
             ],
@@ -454,42 +460,42 @@
                 {
                     speaker: "Narrador",
                     text: "Has conocido a las heroinas en tu primer dia. Pero esto es solo el comienzo...",
-                    character: "🏫"
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png"
                 },
                 {
                     speaker: "Narrador",
                     text: "De repente, se escucha el rugido ensordecedor de un motor potente...",
-                    character: "🏫"
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png"
                 },
                 {
                     speaker: "Narrador",
                     text: "Una motocicleta negra entra a gran velocidad al patio, derrapando y asustando a todos los vehiculos.",
-                    character: "🏍️"
+                    character: "Greta.jpg"
                 },
                 {
                     speaker: "Greta Eisenrad",
                     text: "Fuera de mi camino, chatarra inutil!",
-                    character: "🏍️"
+                    character: "Greta.jpg"
                 },
                 {
                     speaker: "Narrador",
                     text: "La misteriosa motocicleta te mira fijamente con sus faros rojos brillantes...",
-                    character: "🏍️"
+                    character: "Greta.jpg"
                 },
                 {
                     speaker: "Greta Eisenrad",
                     text: "Asi que tu eres el famoso humano... Veremos si vales la pena.",
-                    character: "🏍️"
+                    character: "Greta.jpg"
                 },
                 {
                     speaker: "Narrador",
                     text: "Se aleja rugiendo, dejando a todos en silencio. Quien era esa motocicleta tan intimidante?",
-                    character: "🏫"
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png"
                 },
                 {
                     speaker: "Narrador",
                     text: "Continuara... (En el proximo episodio: La llegada de Greta Eisenrad!)",
-                    character: "🏫",
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png",
                     choices: [
                         { text: "Continuar al Dia 2", next: "day2_start" },
                         { text: "Reiniciar", next: "restart" },
@@ -501,27 +507,27 @@
                 {
                     speaker: "Narrador",
                     text: "DIA 2 - Al dia siguiente te diriges a la escuela con Jeepy.",
-                    character: "🚙"
+                    character: "Jeepychan.jpg"
                 },
                 {
                     speaker: "Jeepy",
                     text: "Buenos dias! Que emocionante! Vamos juntos a la escuela como en los viejos tiempos!",
-                    character: "🚙"
+                    character: "Jeepychan.jpg"
                 },
                 {
                     speaker: "Jeepy",
                     text: "Ah, pero tenemos salones diferentes... No te preocupes! A la hora del almuerzo ire a la azotea!",
-                    character: "🚙"
+                    character: "Jeepychan.jpg"
                 },
                 {
                     speaker: "Narrador",
                     text: "Te preguntas como subira un jeep a la azotea, pero decides no preguntar...",
-                    character: "🚙"
+                    character: "Jeepychan.jpg"
                 },
                 {
                     speaker: "Jeepy",
                     text: "Nos vemos alli! Sera como nuestro lugar secreto! Kyaa!",
-                    character: "🚙",
+                    character: "Jeepychan.jpg",
                     next: "day2_class"
                 }
             ],
@@ -529,22 +535,22 @@
                 {
                     speaker: "Narrador",
                     text: "Te diriges a tu salon de clases cuando escuchas voces en el pasillo.",
-                    character: "🏫"
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png"
                 },
                 {
                     speaker: "Heli-Chan",
                     text: "Soldado! Por que no estas en tu aula asignada? La disciplina es fundamental!",
-                    character: "🚁"
+                    character: "Helichan.jpg"
                 },
                 {
                     speaker: "Estudiante",
                     text: "P-perdon! Me perdi!",
-                    character: "🏫"
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png"
                 },
                 {
                     speaker: "Narrador",
                     text: "Ves a Heli-Chan regañando a otro estudiante. Que haces?",
-                    character: "🚁",
+                    character: "Helichan.jpg",
                     choices: [
                         { text: "Acercarse a ver que pasa", next: "heli_route_d2" },
                         { text: "Ir directo al aula", next: "lunch_choice" }
@@ -555,17 +561,17 @@
                 {
                     speaker: "Narrador",
                     text: "Te acercas curioso. Heli-Chan nota tu presencia y de repente se sonroja ligeramente.",
-                    character: "🚁"
+                    character: "Helichan.jpg"
                 },
                 {
                     speaker: "Heli-Chan",
                     text: "E-era un regaño necesario! No soy una bully o algo asi! Solo mantengo el orden!",
-                    character: "🚁"
+                    character: "Helichan.jpg"
                 },
                 {
                     speaker: "Heli-Chan",
                     text: "La disciplina es importante para el funcionamiento de la unidad... digo, de la escuela!",
-                    character: "🚁",
+                    character: "Helichan.jpg",
                     choices: [
                         { text: "Me asusta un poco...", next: "lunch_choice" },
                         { text: "Usted manda, sargenta", next: "heli_impressed_d2", affection: { heli: 2 } }
@@ -576,17 +582,17 @@
                 {
                     speaker: "Heli-Chan",
                     text: "...! *Sus rotores se detienen por un momento* Tu... tu realmente me entiendes...",
-                    character: "🚁"
+                    character: "Helichan.jpg"
                 },
                 {
                     speaker: "Heli-Chan",
                     text: "Descanso, soldado! *Parece... sonreir? Es dificil saberlo con un helicoptero*",
-                    character: "🚁"
+                    character: "Helichan.jpg"
                 },
                 {
                     speaker: "Narrador",
                     text: "Se aleja rapidamente, pero parece complacida. Has ganado su respeto!",
-                    character: "🚁",
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png",
                     next: "lunch_choice"
                 }
             ],
@@ -594,7 +600,7 @@
                 {
                     speaker: "Narrador",
                     text: "Llega la hora del almuerzo. Tienes dos opciones...",
-                    character: "🏫",
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png",
                     choices: [
                         { text: "Ir directo a almorzar con Jeepy", next: "jeepy_lunch" },
                         { text: "Ir al baño primero", next: "motorin_encounter_d2" }
@@ -605,27 +611,27 @@
                 {
                     speaker: "Narrador",
                     text: "Subes a la azotea (aun es un misterio como llego Jeepy ahi) y la encuentras esperandote.",
-                    character: "🚙"
+                    character: "Jeepychan.jpg"
                 },
                 {
                     speaker: "Jeepy",
                     text: "Llegaste! Sabia que vendrias! Como en los viejos tiempos!",
-                    character: "🚙"
+                    character: "Jeepychan.jpg"
                 },
                 {
                     speaker: "Jeepy",
                     text: "Te acuerdas cuando jugabamos a las escondidas detras del garaje de tu papa?",
-                    character: "🚙"
+                    character: "Jeepychan.jpg"
                 },
                 {
                     speaker: "Jeepy",
                     text: "Siempre me encontrabas rapido porque mi motor hacia ruido! Jiji!",
-                    character: "🚙"
+                    character: "Jeepychan.jpg"
                 },
                 {
                     speaker: "Jeepy",
                     text: "Esos fueron los mejores dias de mi vida... y ahora estas aqui otra vez!",
-                    character: "🚙",
+                    character: "Jeepychan.jpg",
                     affection: { jeepy: 2 },
                     next: "after_school_choice"
                 }
@@ -634,22 +640,22 @@
                 {
                     speaker: "Narrador",
                     text: "Camino al baño, doblas una esquina y chocas de frente con algo!",
-                    character: "🛥️"
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png"
                 },
                 {
                     speaker: "Motorin",
                     text: "AUCH! Mira por donde... Tu otra vez! BAKA!",
-                    character: "🛥️"
+                    character: "Motorin.jpg"
                 },
                 {
                     speaker: "Narrador",
                     text: "Esta vez, accidentalmente has tocado la parte delantera de Motorin - su proa!",
-                    character: "🛥️"
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png"
                 },
                 {
                     speaker: "Motorin",
                     text: "KYAAAA! MI PROA! Eres un completo pervertido! VROOOOM!",
-                    character: "🛥️",
+                    character: "Motorin.jpg",
                     choices: [
                         { text: "Disculparse nerviosamente", next: "after_school_choice" },
                         { text: "Es que eres una lancha muy grande", next: "motorin_flustered", affection: { motorin: 2 } }
@@ -660,17 +666,17 @@
                 {
                     speaker: "Motorin",
                     text: "G-GRANDE?! Que quieres decir con eso?! BAKA BAKA!",
-                    character: "🛥️"
+                    character: "Motorin.jpg"
                 },
                 {
                     speaker: "Motorin",
                     text: "No puedes decir esas cosas asi! *Su motor hace ruidos extraños*",
-                    character: "🛥️"
+                    character: "Motorin.jpg"
                 },
                 {
                     speaker: "Narrador",
                     text: "Motorin interpreta tu comentario como coqueteo y se aleja acelerada, claramente nerviosa.",
-                    character: "🛥️",
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png",
                     next: "after_school_choice"
                 }
             ],
@@ -678,7 +684,7 @@
                 {
                     speaker: "Narrador",
                     text: "Terminan las clases. La mayoria de vehiculos se van a casa.",
-                    character: "🏫",
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png",
                     choices: [
                         { text: "Irse a casa con Jeepy", next: "day2_end" },
                         { text: "Quedarse a buscar un libro olvidado", next: "twins_encounter_d2" }
@@ -689,22 +695,22 @@
                 {
                     speaker: "Narrador",
                     text: "Te quedas en la escuela vacia buscando tu libro. Escuchas ruidos en el salon de ciencias.",
-                    character: "🏫"
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png"
                 },
                 {
-                    speaker: "Gela",
+                    speaker: "Gela y Froza",
                     text: "Hermana... mi sistema de refrigeracion... no funciona bien...",
-                    character: "❄️"
+                    character: "Gela y Froza.jpg"
                 },
                 {
-                    speaker: "Froza",
+                    speaker: "Gela y Froza",
                     text: "No puedes enfriar nada... estas sobrecalentandote...",
-                    character: "❄️"
+                    character: "Gela y Froza.jpg"
                 },
                 {
                     speaker: "Narrador",
                     text: "Encuentras a las gemelas. Gela parece tener problemas con su condensador.",
-                    character: "❄️",
+                    character: "Gela y Froza.jpg",
                     choices: [
                         { text: "Volver con Jeepy", next: "day2_end" },
                         { text: "Ofrecerse a arreglar el condensador", next: "twins_repair", affection: { twins: 3 } }
@@ -715,27 +721,27 @@
                 {
                     speaker: "Narrador",
                     text: "Usas tus conocimientos basicos de mecanica para revisar el condensador de Gela.",
-                    character: "❄️"
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png"
                 },
                 {
-                    speaker: "Gela",
+                    speaker: "Gela y Froza",
                     text: "El humano... sabe de refrigeracion...?",
-                    character: "❄️"
+                    character: "Gela y Froza.jpg"
                 },
                 {
                     speaker: "Narrador",
                     text: "Logras limpiar el condensador y restaurar su funcionamiento.",
-                    character: "❄️"
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png"
                 },
                 {
                     speaker: "Froza",
                     text: "Increible... vuelve a funcionar... como tus manos calidas...",
-                    character: "❄️"
+                    character: "Gela y Froza.jpg"
                 },
                 {
                     speaker: "Gela",
                     text: "Confiamos... en el humano... gracias...",
-                    character: "❄️",
+                    character: "Gela y Froza.jpg",
                     next: "day2_end"
                 }
             ],
@@ -743,17 +749,17 @@
                 {
                     speaker: "Narrador",
                     text: "El segundo dia llega a su fin. Has profundizado tu relacion con algunas de las heroinas.",
-                    character: "🏫"
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png"
                 },
                 {
                     speaker: "Narrador",
                     text: "Pero algo se siente diferente en el ambiente... como si una tormenta se acercara...",
-                    character: "🏫"
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png"
                 },
                 {
                     speaker: "Narrador",
                     text: "Fin del Dia 2. Continuara...",
-                    character: "🏫",
+                    character: "https://i.ibb.co/C07P6m8/Garage-Academy-icon.png",
                     choices: [
                         { text: "Reiniciar", next: "restart" },
                         { text: "Menu Principal", next: "menu" }
@@ -783,15 +789,30 @@
         }
 
         function showDialog() {
-            const currentScene = dialogs[gameState.scene];
-            const current = currentScene[gameState.dialog];
+            const current = dialogs[gameState.scene][gameState.dialog];
             
             document.getElementById('speaker').textContent = current.speaker;
             document.getElementById('text').textContent = current.text;
             
             const characterArea = document.getElementById('characterArea');
-            characterArea.innerHTML = '<div class="vehicle">' + current.character + '</div>';
+            characterArea.innerHTML = '';
             
+            const characterElement = document.createElement('div');
+            characterElement.className = 'vehicle';
+            
+            const isImage = current.character.includes('.jpg') || current.character.includes('.png');
+            
+            if (isImage) {
+                const img = document.createElement('img');
+                img.src = current.character;
+                img.alt = current.speaker;
+                characterElement.appendChild(img);
+            } else {
+                characterElement.textContent = current.character;
+            }
+            
+            characterArea.appendChild(characterElement);
+
             const choicesDiv = document.getElementById('choices');
             const continueBtn = document.getElementById('continueBtn');
             
@@ -837,11 +858,13 @@
             const current = dialogs[gameState.scene][gameState.dialog];
             
             if (current.next) {
-                selectChoice({ next: current.next });
+                gameState.scene = current.next;
+                gameState.dialog = 0;
             } else {
                 gameState.dialog++;
-                showDialog();
             }
+            
+            showDialog();
         }
 
         function updateStats() {
