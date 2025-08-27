@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garage Academy: Una Historia de Amor Mecanica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'game': ['Georgia', 'serif'],
+                    },
+                    colors: {
+                        'game-pink': '#FFB6C1',
+                        'game-blue': '#87CEEB',
+                        'game-purple': '#DDA0DD'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes typewriter {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1 }
+            51%, 100% { opacity: 0 }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid;
+            white-space: nowrap;
+            animation: typewriter 3s steps(40) 1s forwards, blink 1s infinite;
+        }
+        
+        .helicopter {
+            width: 120px;
+            height: 80px;
+            background: #2D5016;
+            position: relative;
+            border-radius: 10px;
+        }
+        
+        .helicopter::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
+            animation: spin 0.1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: translateX(-50%) rotate(0deg); }
+            to { transform: translateX(-50%) rotate(360deg); }
+        }
+        
+        .boat {
+            width: 100px;
+            height: 40px;
+            background: #FF4444;
+            border-radius: 0 50px 50px 0;
+            position: relative;
+        }
+        
+        .boat::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 15px;
+            width: 20px;
+            height: 10px;
+            background: #333;
+            border-radius: 50%;
+        }
+        
+        .fridge {
+            width: 60px;
+            height: 100px;
+            background: linear-gradient(45deg, #E6F3FF, #B3D9FF);
+            border: 2px solid #4A90E2;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .fridge::before {
+            content: '';
+            position: absolute;
+            right: 5px;
+            top: 20px;
+            width: 4px;
+            height: 15px;
+            background: #333;
+            border-radius: 2px;
+        }
+        
+        .jeep {
+            width: 100px;
+            height: 60px;
+            background: #8B4513;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .jeep::before, .jeep::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            width: 20px;
+            height: 20px;
+            background: #333;
+            border-radius: 50%;
+        }
+        
+        .jeep::before { left: 10px; }
+        .jeep::after { right: 10px; }
+        
+        .motorcycle {
+            width: 90px;
+            height: 50px;
+            background: #000;
+            border-radius: 5px;
+            position: relative;
+        }
+        
+        .motorcycle::before, .motorcycle::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            width: 16px;
+            height: 16px;
+            background: #333;
+            border-radius: 50%;
+        }
+        
+        .motorcycle::before { left: 5px; }
+        .motorcycle::after { right: 5px; }
+    </style>
+</head>
+<body class="h-full bg-gradient-to-br from-pink-100 via-purple-50 to-blue-100 dark:from-gray-900 dark:via-purple-900 dark:to-blue-900">
+    
+    <!-- Main Menu -->
+    <div id="mainMenu" class="min-h-screen flex flex-col items-center justify-center p-4">
+        <div class="text-center space-y-8 max-w-2xl">
+            <h1 class="text-4xl md:text-6xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent font-game">
+                🚁 Garage Academy 🚗
+            </h1>
+            <h2 class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 font-game">
+                Una Historia de Amor Mecanica
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400 italic">
+                "En una academia donde los vehiculos cobran vida... encontraras el amor verdadero?"
+            </p>
+            
+            <div class="space-y-4">
+                <button onclick="startGame()" class="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-lg text-xl font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                    🎮 Iniciar Nueva Historia
+                </button>
+                
+                <button onclick="showCharacters()" class="w-full bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-8 py-4 rounded-lg text-xl font-semibold hover:from-blue-600 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105">
+                    💕 Conocer a las Heroinas
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Character Gallery -->
+    <div id="characterGallery" class="hidden min-h-screen p-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-4">💕 Las Heroinas de Garage Academy 💕</h2>
+                <button onclick="showMainMenu()" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors">
+                    ← Volver al Menu
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Heli-Chan -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="flex justify-center mb-4">
+                        <div class="helicopter"></div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2 text-green-600">🚁 Heli-Chan</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 text-center mb-3">Apache Attack Helicopter</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm">
+                        <strong>Tropo:</strong> Militar Ruda<br>
+                        <strong>Personalidad:</strong> Disciplinada y directa. Se enamora del protagonista porque no le teme a su imponente presencia militar.
+                    </p>
+                </div>
+
+                <!-- Motorin -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="flex justify-center mb-4">
+                        <div class="boat"></div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2 text-red-500">🛥️ Motorin</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 text-center mb-3">Speedboat de Motor Ruidoso</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm">
+                        <strong>Tropo:</strong> Tsundere<br>
+                        <strong>Personalidad:</strong> Dice "BAKA!" con acento de motor. Se enamora cuando el protagonista toca accidentalmente su popa.
+                    </p>
+                </div>
+
+                <!-- Gemelas Gela y Froza -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="flex justify-center mb-4 space-x-4">
+                        <div class="fridge"></div>
+                        <div class="fridge"></div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2 text-blue-500">❄️ Gela & Froza</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 text-center mb-3">Gemelas Refrigeradoras</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm">
+                        <strong>Tropo:</strong> Kuudere (Gemelas)<br>
+                        <strong>Personalidad:</strong> Frias por fuera, pero se derriten por el calor del protagonista. Bajitas y adorables.
+                    </p>
+                </div>
+
+                <!-- Jeepy -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="flex justify-center mb-4">
+                        <div class="jeep"></div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2 text-yellow-600">🚙 Jeepy</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 text-center mb-3">Jeep Osananajimi</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm">
+                        <strong>Tropo:</strong> Amiga de la Infancia + Genki Girl<br>
+                        <strong>Personalidad:</strong> Enamorada desde ninos. Energetica y siempre intentando llamar la atencion del protagonista.
+                    </p>
+                </div>
+
+                <!-- Greta Eisenrad (Secreta) -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border-2 border-red-500">
+                    <div class="flex justify-center mb-4">
+                        <div class="motorcycle"></div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2 text-red-600">🏍️ Greta Eisenrad</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 text-center mb-3">Motocicleta Misteriosa</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm">
+                        <strong>Tropo:</strong> Yandere (Ruta Secreta)<br>
+                        <strong>Personalidad:</strong> Ruda y altanera. ⚠️ PELIGRO: Se vuelve obsesiva si se enamora del protagonista.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="hidden min-h-screen flex flex-col">
+        <!-- Top UI -->
+        <div class="bg-white dark:bg-gray-800 shadow-lg p-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <button onclick="showMainMenu()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition-colors">
+                    📱 Menu
+                </button>
+                <div class="text-sm text-gray-600 dark:text-gray-400">
+                    Capitulo: <span id="chapterDisplay">1</span> | Dia: <span id="dayDisplay">1</span>
+                </div>
+            </div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">
+                ❤️ Afecto: <span id="affectionDisplay">Neutral</span>
+            </div>
+        </div>
+
+        <!-- Character Display -->
+        <div id="characterDisplay" class="flex-1 flex items-center justify-center bg-gradient-to-b from-sky-200 to-green-200 dark:from-gray-700 dark:to-gray-800 p-8">
+            <div id="currentCharacter" class="text-center">
+                <!-- Character sprites will appear here -->
+            </div>
+        </div>
+
+        <!-- Dialog Box -->
+        <div class="bg-black bg-opacity-80 text-white p-6 min-h-[200px]">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-4">
+                    <span id="speakerName" class="text-pink-400 font-bold text-lg"></span>
+                </div>
+                <div id="dialogText" class="text-lg leading-relaxed mb-6 min-h-[80px]"></div>
+                
+                <!-- Choices -->
+                <div id="choicesContainer" class="space-y-3"></div>
+                
+                <!-- Continue Button -->
+                <div id="continueButton" class="hidden text-center">
+                    <button onclick="nextDialog()" class="bg-pink-500 text-white px-6 py-2 rounded-lg hover:bg-pink-600 transition-colors">
+                        Continuar ▶️
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game State
+        let gameState = {
+            chapter: 1,
+            day: 1,
+            currentScene: 'intro',
+            affection: {
+                heli: 0,
+                motorin: 0,
+                gela: 0,
+                froza: 0,
+                jeepy: 0,
+                greta: 0
+            },
+            flags: {
+                metGreta: false,
+                greteRoute: false,
+                heliConfronted: false,
+                motorinTouched: false,
+                twinsWarmed: false,
+                jeepyRecognized: false
+            },
+            currentDialog: 0
+        };
+
+        // Dialog Data - Completely rewritten with ASCII only characters
+        const dialogData = {
+            intro: [
+                {
+                    speaker: "Narrador",
+                    text: "Bienvenido a Garage Academy, la academia mas prestigiosa para vehiculos sensibles!",
+                    character: null
+                },
+                {
+                    speaker: "Narrador", 
+                    text: "Eres el nuevo estudiante humano. Por alguna razon absurda, has sido transferido a una escuela llena de vehiculos antropomorficos.",
+                    character: null
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Tu primer dia comienza ahora. Estas listo para una experiencia mecanicamente romantica?",
+                    character: null,
+                    choices: [
+                        { text: "Por supuesto! Estoy emocionado!", next: "courtyard" },
+                        { text: "Esto es muy raro... pero sigamos.", next: "courtyard" },
+                        { text: "En que me he metido?", next: "courtyard" }
+                    ]
+                }
+            ],
+            courtyard: [
+                {
+                    speaker: "Narrador",
+                    text: "Entras al patio de la escuela. Varios vehiculos estan socializando en grupos.",
+                    character: null
+                },
+                {
+                    speaker: "Narrador",
+                    text: "De repente, escuchas el sonido de rotores acercandose. WOOP WOOP WOOP!",
+                    character: null
+                },
+                {
+                    speaker: "Heli-Chan",
+                    text: "ALTO AHI, SOLDADO! Identificate inmediatamente. Este sector esta bajo mi supervision.",
+                    character: "heli"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Un imponente helicoptero Apache te confronta. Sus rotores giran amenazadoramente, pero hay algo adorable en su forma de hablar.",
+                    character: "heli"
+                },
+                {
+                    speaker: "Heli-Chan",
+                    text: "Y bien? No vas a huir como todos los demas cobardes?",
+                    character: "heli",
+                    choices: [
+                        { text: "No le tengo miedo a nadie.", next: "heli_impressed", affection: { heli: 2 } },
+                        { text: "Soy el nuevo estudiante.", next: "heli_neutral" },
+                        { text: "Retroceder nerviosamente", next: "heli_disappointed", affection: { heli: -1 } }
+                    ]
+                }
+            ],
+            heli_impressed: [
+                {
+                    speaker: "Heli-Chan",
+                    text: "Interesante! No muchos civiles mantienen su posicion frente a un Apache. Respeto eso, soldado.",
+                    character: "heli"
+                },
+                {
+                    speaker: "Heli-Chan", 
+                    text: "Tal vez... tal vez no seas como los otros. Sus rotores disminuyen la velocidad. Me llamo Heli-Chan, capitan de la patrulla aerea.",
+                    character: "heli"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Has impresionado a Heli-Chan! Su respeto militar hacia ti parece estar desarrollandose en algo mas...",
+                    character: null
+                },
+                {
+                    speaker: "Narrador",
+                    text: "De repente, escuchas un motor acercandose desde el lago cercano. VROOOOM VROOOOM!",
+                    character: null,
+                    next: "motorin_intro"
+                }
+            ],
+            heli_neutral: [
+                {
+                    speaker: "Heli-Chan",
+                    text: "Ah, el famoso nuevo estudiante humano. He oido rumores sobre ti.",
+                    character: "heli"
+                },
+                {
+                    speaker: "Heli-Chan",
+                    text: "Manten la disciplina en mi territorio y no tendremos problemas, civil.",
+                    character: "heli"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Heli-Chan mantiene una actitud profesional. Tal vez puedas impresionarla mas tarde...",
+                    character: null,
+                    next: "motorin_intro"
+                }
+            ],
+            heli_disappointed: [
+                {
+                    speaker: "Heli-Chan",
+                    text: "Suspira con decepcion. Otro cobarde mas. Que aburrido.",
+                    character: "heli"
+                },
+                {
+                    speaker: "Heli-Chan",
+                    text: "Espero que puedas crecer un poco de valor durante tu estancia aqui, civil.",
+                    character: "heli"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Heli-Chan parece decepcionada. Quizas la primera impresion no fue la mejor...",
+                    character: null,
+                    next: "motorin_intro"
+                }
+            ],
+            motorin_intro: [
+                {
+                    speaker: "Narrador",
+                    text: "Una lancha roja se acerca a toda velocidad desde el pequeno lago de la academia. Esta viniendo directamente hacia ti!",
+                    character: null
+                },
+                {
+                    speaker: "Motorin",
+                    text: "VROOOOM! Oye, nuevo! Sal de mi camino o te atropello! VROOOOM!",
+                    character: "motorin"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "No hay tiempo de moverse! La lancha se desliza por el cesped mojado y se detiene justo frente a ti.",
+                    character: "motorin"
+                },
+                {
+                    speaker: "Motorin",
+                    text: "B-BAKA! Casi te aplasto! VROOOM VROOOM. Por que no te moviste?",
+                    character: "motorin"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "En el susto, accidentalmente pones tu mano en la parte trasera de la lancha para mantener el equilibrio.",
+                    character: "motorin",
+                    choices: [
+                        { text: "Lo siento! Estas bien?", next: "motorin_touched", affection: { motorin: 2 } },
+                        { text: "Quitar la mano rapidamente", next: "motorin_touched", affection: { motorin: 1 } },
+                        { text: "Tu fuiste quien casi me atropella!", next: "motorin_angry", affection: { motorin: -1 } }
+                    ]
+                }
+            ],
+            motorin_touched: [
+                {
+                    speaker: "Motorin",
+                    text: "KYAAAA! M-mi popa! PERVERTIDO! VROOOOM VROOOOM VROOOOM",
+                    character: "motorin"
+                },
+                {
+                    speaker: "Motorin",
+                    text: "N-no puedes tocar a una dama asi! BAKA! Su motor hace ruidos extranos.",
+                    character: "motorin"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "A pesar de sus protestas, Motorin parece sonrojada? Puede una lancha sonrojarse? Su motor suena diferente.",
+                    character: "motorin"
+                },
+                {
+                    speaker: "Motorin",
+                    text: "P-pero... gracias por preocuparte! VROOOM. No es que me importe o algo asi! BAKA!",
+                    character: "motorin"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Definitivamente has causado una impresion en Motorin. Ahora escuchas unos pasos suaves acercandose...",
+                    character: null,
+                    next: "twins_intro"
+                }
+            ],
+            motorin_angry: [
+                {
+                    speaker: "Motorin",
+                    text: "EH?! Como te atreves! YO casi TE atropello! VROOOOM VROOOOM",
+                    character: "motorin"
+                },
+                {
+                    speaker: "Motorin",
+                    text: "BAKA! Los humanos no tienen ningun respeto! Mi motor va perfectamente bien, gracias!",
+                    character: "motorin"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Motorin parece molesta, pero notas que sigue cerca de ti en lugar de alejarse...",
+                    character: "motorin"
+                },
+                {
+                    speaker: "Motorin",
+                    text: "Hmph! Solo... ten mas cuidado la proxima vez! Su motor suena un poco mas suave",
+                    character: "motorin"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "A pesar de su actitud, parece que has llamado su atencion. Escuchas unos pasos suaves acercandose...",
+                    character: null,
+                    next: "twins_intro"
+                }
+            ],
+            twins_intro: [
+                {
+                    speaker: "Gela",
+                    text: "...Hermana... hay un... humano... aqui...",
+                    character: "twins"
+                },
+                {
+                    speaker: "Froza", 
+                    text: "...Si hermana... se ve... calido...",
+                    character: "twins"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Dos pequenas refrigeradoras identicas se acercan lentamente. Sus voces son monotonas pero hay algo adorable en su sincronizacion.",
+                    character: "twins"
+                },
+                {
+                    speaker: "Gela",
+                    text: "...Somos... Gela y Froza... gemelas refrigeradoras...",
+                    character: "twins"
+                },
+                {
+                    speaker: "Froza",
+                    text: "...Mantenemos las cosas... frias... pero tu... irradias calor...",
+                    character: "twins"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Las gemelas te observan con curiosidad. Puedes sentir que realmente necesitan ese calor humano.",
+                    character: "twins",
+                    choices: [
+                        { text: "Ofrecerles un abrazo calido", next: "twins_warmed", affection: { gela: 3, froza: 3 } },
+                        { text: "Estan bien? Parecen frias.", next: "twins_concerned", affection: { gela: 1, froza: 1 } },
+                        { text: "Ehh... hola chicas.", next: "twins_neutral" }
+                    ]
+                }
+            ],
+            twins_warmed: [
+                {
+                    speaker: "Gela",
+                    text: "...Ah!... tan... calido... Se acerca mas",
+                    character: "twins"
+                },
+                {
+                    speaker: "Froza",
+                    text: "...Este sentimiento... no es... refrigeracion... es... amor...",
+                    character: "twins"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Las gemelas parecen derretirse metaforicamente en tus brazos. Sus sistemas de enfriamiento funcionan mas fuerte para compensar.",
+                    character: "twins"
+                },
+                {
+                    speaker: "Gela",
+                    text: "...Queremos... estar cerca... de tu calor... siempre...",
+                    character: "twins"
+                },
+                {
+                    speaker: "Froza",
+                    text: "...Hermana... creo que... hemos encontrado... nuestro sol...",
+                    character: "twins"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Has derretido los corazones frios de las gemelas! De repente, escuchas un motor familiar acercandose...",
+                    character: null,
+                    next: "jeepy_intro"
+                }
+            ],
+            twins_concerned: [
+                {
+                    speaker: "Gela",
+                    text: "...El... se preocupa... por nosotras...",
+                    character: "twins"
+                },
+                {
+                    speaker: "Froza",
+                    text: "...Es... considerado... como el calor... del hogar...",
+                    character: "twins"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Las gemelas aprecian tu preocupacion. Sus sistemas de refrigeracion parecen trabajar un poco menos fuerte.",
+                    character: "twins"
+                },
+                {
+                    speaker: "Gela",
+                    text: "...Gracias... por notar... nuestro estado...",
+                    character: "twins"
+                },
+                {
+                    speaker: "Froza",
+                    text: "...Tal vez... podriamos... acercarnos mas... a ti...",
+                    character: "twins"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Has mostrado amabilidad hacia las gemelas. De repente, escuchas un motor familiar acercandose...",
+                    character: null,
+                    next: "jeepy_intro"
+                }
+            ],
+            twins_neutral: [
+                {
+                    speaker: "Gela",
+                    text: "...Hola... humano...",
+                    character: "twins"
+                },
+                {
+                    speaker: "Froza",
+                    text: "...Somos... las gemelas... refrigeradoras...",
+                    character: "twins"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Las gemelas mantienen su distancia, pero siguen observandote con curiosidad.",
+                    character: "twins"
+                },
+                {
+                    speaker: "Gela",
+                    text: "...Si necesitas... algo frio... estamos aqui...",
+                    character: "twins"
+                },
+                {
+                    speaker: "Froza",
+                    text: "...Aunque... tu pareces... bastante calido...",
+                    character: "twins"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Una interaccion neutral con las gemelas. De repente, escuchas un motor familiar acercandose...",
+                    character: null,
+                    next: "jeepy_intro"
+                }
+            ],
+            jeepy_intro: [
+                {
+                    speaker: "???",
+                    text: "EEEEHHHHH!!! ES REALMENTE EL?!",
+                    character: null
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Un jeep marron viene corriendo hacia ti a toda velocidad, sus faros brillando de emocion.",
+                    character: null
+                },
+                {
+                    speaker: "Jeepy",
+                    text: "ERES TU! REALMENTE ERES TU! Mi mejor amigo de la infancia!",
+                    character: "jeepy"
+                },
+                {
+                    speaker: "Jeepy",
+                    text: "Soy Jeepy! Me recuerdas? Soliamos jugar juntos cuando eramos pequenos!",
+                    character: "jeepy"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Una jeep muy energetica y familiar se presenta. Sus ojos (faros) brillan con nostalgia y... algo mas?",
+                    character: "jeepy",
+                    choices: [
+                        { text: "Jeepy! Por supuesto que te recuerdo!", next: "jeepy_happy", affection: { jeepy: 3 } },
+                        { text: "Ah... si, me suenas familiar.", next: "jeepy_hopeful", affection: { jeepy: 1 } },
+                        { text: "Lo siento, no te recuerdo bien...", next: "jeepy_sad", affection: { jeepy: -1 } }
+                    ]
+                }
+            ],
+            jeepy_happy: [
+                {
+                    speaker: "Jeepy",
+                    text: "KYAAAAA! SI SI SI! Sabia que no me habias olvidado!",
+                    character: "jeepy"
+                },
+                {
+                    speaker: "Jeepy",
+                    text: "He estado esperando tanto tiempo para verte otra vez! Cada dia sonaba con este momento!",
+                    character: "jeepy"
+                },
+                {
+                    speaker: "Jeepy",
+                    text: "Vamos a estar juntos otra vez! Como en los viejos tiempos! Pero ahora... ahora mis sentimientos son diferentes!",
+                    character: "jeepy"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Jeepy esta radiante de felicidad. Claramente, sus sentimientos por ti han crecido mas alla de la simple amistad...",
+                    character: "jeepy"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "De repente, el ambiente se vuelve tenso. Se escucha el rugido de un motor potente acercandose...",
+                    character: null,
+                    next: "chapter_end"
+                }
+            ],
+            jeepy_hopeful: [
+                {
+                    speaker: "Jeepy",
+                    text: "Ah! Si! Sabia que me recordarias! Aunque sea un poquito!",
+                    character: "jeepy"
+                },
+                {
+                    speaker: "Jeepy",
+                    text: "Esta bien! Han pasado muchos anos! Pero ahora estamos juntos otra vez!",
+                    character: "jeepy"
+                },
+                {
+                    speaker: "Jeepy",
+                    text: "Te voy a ayudar a recordar todos nuestros momentos divertidos! Y tal vez... crear nuevos!",
+                    character: "jeepy"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Jeepy esta determinada a recuperar vuestra amistad. Sus sentimientos parecen sinceros...",
+                    character: "jeepy"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "De repente, el ambiente se vuelve tenso. Se escucha el rugido de un motor potente acercandose...",
+                    character: null,
+                    next: "chapter_end"
+                }
+            ],
+            jeepy_sad: [
+                {
+                    speaker: "Jeepy",
+                    text: "Oh... ya veo... Sus faros se apagan un poco",
+                    character: "jeepy"
+                },
+                {
+                    speaker: "Jeepy",
+                    text: "Supongo... supongo que han pasado muchos anos. Es normal que no me recuerdes...",
+                    character: "jeepy"
+                },
+                {
+                    speaker: "Jeepy",
+                    text: "P-pero esta bien! Podemos ser amigos otra vez! Desde cero! Trata de sonar alegre",
+                    character: "jeepy"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Jeepy esta claramente herida, pero trata de mantener una actitud positiva. Te sientes mal por ella...",
+                    character: "jeepy"
+                },
+                {
+                    speaker: "Narrador",
+                    text: "De repente, el ambiente se vuelve tenso. Se escucha el rugido de un motor potente acercandose...",
+                    character: null,
+                    next: "chapter_end"
+                }
+            ],
+            chapter_end: [
+                {
+                    speaker: "Narrador",
+                    text: "Has conocido a cuatro increibles heroinas en tu primer dia. Pero esto es solo el comienzo...",
+                    character: null
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Poco sabes que pronto llegara una quinta heroina que cambiara todo...",
+                    character: null
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Podras navegar las complejas relaciones en Garage Academy?",
+                    character: null
+                },
+                {
+                    speaker: "Narrador",
+                    text: "Continuara... (Esta es solo una demostracion del concepto!)",
+                    character: null,
+                    choices: [
+                        { text: "Quiero ver mas!", next: "restart" },
+                        { text: "Volver al menu principal", next: "menu" }
+                    ]
+                }
+            ]
+        };
+
+        // Dark mode detection
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        function showMainMenu() {
+            document.getElementById('mainMenu').classList.remove('hidden');
+            document.getElementById('characterGallery').classList.add('hidden');
+            document.getElementById('gameScreen').classList.add('hidden');
+        }
+
+        function showCharacters() {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('characterGallery').classList.remove('hidden');
+            document.getElementById('gameScreen').classList.add('hidden');
+        }
+
+        function startGame() {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('characterGallery').classList.add('hidden');
+            document.getElementById('gameScreen').classList.remove('hidden');
+            
+            // Reset game state
+            gameState = {
+                chapter: 1,
+                day: 1,
+                currentScene: 'intro',
+                affection: {
+                    heli: 0,
+                    motorin: 0,
+                    gela: 0,
+                    froza: 0,
+                    jeepy: 0,
+                    greta: 0
+                },
+                flags: {
+                    metGreta: false,
+                    greteRoute: false,
+                    heliConfronted: false,
+                    motorinTouched: false,
+                    twinsWarmed: false,
+                    jeepyRecognized: false
+                },
+                currentDialog: 0
+            };
+            
+            updateUI();
+            showDialog(gameState.currentScene, 0);
+        }
+
+        function updateUI() {
+            document.getElementById('chapterDisplay').textContent = gameState.chapter;
+            document.getElementById('dayDisplay').textContent = gameState.day;
+            
+            // Calculate overall affection
+            const totalAffection = Object.values(gameState.affection).reduce((a, b) => a + b, 0);
+            let affectionText = 'Neutral';
+            if (totalAffection > 8) affectionText = 'Muy Popular 💕';
+            else if (totalAffection > 4) affectionText = 'Popular 😊';
+            else if (totalAffection < -4) affectionText = 'Impopular 😔';
+            
+            document.getElementById('affectionDisplay').textContent = affectionText;
+        }
+
+        function showDialog(scene, index) {
+            const dialogs = dialogData[scene];
+            if (!dialogs || index >= dialogs.length) return;
+            
+            const dialog = dialogs[index];
+            gameState.currentDialog = index;
+            
+            // Update speaker name
+            document.getElementById('speakerName').textContent = dialog.speaker || '';
+            
+            // Show character
+            showCharacter(dialog.character);
+            
+            // Type out dialog text
+            typeText(dialog.text);
+            
+            // Show choices or continue button
+            if (dialog.choices) {
+                showChoices(dialog.choices, scene);
+            } else {
+                document.getElementById('choicesContainer').innerHTML = '';
+                document.getElementById('continueButton').classList.remove('hidden');
+            }
+        }
+
+        function typeText(text) {
+            const dialogElement = document.getElementById('dialogText');
+            dialogElement.innerHTML = '';
+            
+            let i = 0;
+            const typeInterval = setInterval(() => {
+                if (i < text.length) {
+                    dialogElement.innerHTML += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typeInterval);
+                }
+            }, 30);
+        }
+
+        function showCharacter(character) {
+            const characterDisplay = document.getElementById('currentCharacter');
+            
+            if (!character) {
+                characterDisplay.innerHTML = '<div class="text-6xl">🏫</div><p class="text-gray-600 mt-4">Garage Academy</p>';
+                return;
+            }
+            
+            const characterSprites = {
+                heli: '<div class="helicopter mx-auto mb-4"></div><h3 class="text-2xl font-bold text-green-600">🚁 Heli-Chan</h3>',
+                motorin: '<div class="boat mx-auto mb-4"></div><h3 class="text-2xl font-bold text-red-500">🛥️ Motorin</h3>',
+                twins: '<div class="flex justify-center space-x-4 mb-4"><div class="fridge"></div><div class="fridge"></div></div><h3 class="text-2xl font-bold text-blue-500">❄️ Gela & Froza</h3>',
+                jeepy: '<div class="jeep mx-auto mb-4"></div><h3 class="text-2xl font-bold text-yellow-600">🚙 Jeepy</h3>',
+                greta: '<div class="motorcycle mx-auto mb-4"></div><h3 class="text-2xl font-bold text-red-600">🏍️ Greta Eisenrad</h3>'
+            };
+            
+            characterDisplay.innerHTML = characterSprites[character] || '';
+        }
+
+        function showChoices(choices, currentScene) {
+            document.getElementById('continueButton').classList.add('hidden');
+            const container = document.getElementById('choicesContainer');
+            container.innerHTML = '';
+            
+            choices.forEach((choice, index) => {
+                const button = document.createElement('button');
+                button.className = 'w-full bg-purple-600 text-white p-3 rounded-lg hover:bg-purple-700 transition-colors text-left';
+                button.textContent = choice.text;
+                button.onclick = () => selectChoice(choice, currentScene);
+                container.appendChild(button);
+            });
+        }
+
+        function selectChoice(choice, currentScene) {
+            // Apply affection changes
+            if (choice.affection) {
+                Object.keys(choice.affection).forEach(character => {
+                    gameState.affection[character] += choice.affection[character];
+                });
+                updateUI();
+            }
+            
+            // Navigate to next scene
+            if (choice.next === 'restart') {
+                startGame();
+            } else if (choice.next === 'menu') {
+                showMainMenu();
+            } else if (choice.next) {
+                gameState.currentScene = choice.next;
+                showDialog(choice.next, 0);
+            }
+        }
+
+        function nextDialog() {
+            const currentScene = gameState.currentScene;
+            const nextIndex = gameState.currentDialog + 1;
+            const dialogs = dialogData[currentScene];
+            
+            if (nextIndex < dialogs.length) {
+                showDialog(currentScene, nextIndex);
+            } else {
+                // Check if there's a next scene
+                const currentDialog = dialogs[gameState.currentDialog];
+                if (currentDialog.next) {
+                    gameState.currentScene = currentDialog.next;
+                    showDialog(currentDialog.next, 0);
+                }
+            }
+        }
+
+        // Initialize
+        showMainMenu();
+    </script>
+</body>
+</html>
